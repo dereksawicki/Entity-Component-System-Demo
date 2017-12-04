@@ -1,0 +1,19 @@
+Goal of this project: 
+-learn more about event queue's, component architecture, and factory classes
+-have player fly spaceship around. Bump into different items to trigger events and switch out components
+
+
+TODO:
+-create actor class
+-create actor factory
+-create controllable interface
+-create player controls implementation of that interface
+-create drawable interface
+*actor should have a component for user input, for its sprite, and the user should be able to fly a ship around.
+
+-------
+
+-
+*actor should be able to run into different colorred items, taking on the color of the item it runs into
+
+
