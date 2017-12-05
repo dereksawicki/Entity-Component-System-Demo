@@ -1,5 +1,6 @@
 #include "EntityFactory.h"
 #include "CircleSuit.h"
+#include "SuitComponent.h"
 
 Entity* EntityFactory::getEntity(Entity::ENTITY_TYPE type)
 {
@@ -7,14 +8,14 @@ Entity* EntityFactory::getEntity(Entity::ENTITY_TYPE type)
 	{
 	case Entity::ENTITY_TYPE::Player:
 	{
-		Entity* newEnt = new Entity(Entity::ENTITY_TYPE::Player);
+		Entity* newEntity = new Entity(Entity::ENTITY_TYPE::Player);
 		// add things a player has
-		CircleSuit* newSuit = new CircleSuit();
-		newSuit->setPosition(200.f, 200.f);
-		newEnt->attachComponent(newSuit);
+		SuitComponent* newSuit = new CircleSuit();
 
+		newEntity->setPosition(200.f, 200.f);
+		newEntity->attachComponent(newSuit);
 
-		return newEnt;
+		return newEntity;
 	}
 	default:
 		return nullptr;

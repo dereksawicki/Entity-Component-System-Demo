@@ -1,5 +1,5 @@
 #include "Renderer.h"
-#include "CircleSuit.h"
+#include "SuitComponent.h"
 
 
 void Renderer::render(sf::RenderWindow& window, Entity* entity)
@@ -9,8 +9,9 @@ void Renderer::render(sf::RenderWindow& window, Entity* entity)
 	case Entity::ENTITY_TYPE::Player:
 	{
 		// draw its renderable components
-		CircleSuit* suit = dynamic_cast<CircleSuit*>(entity->getComponent(EntityComponent::CIRCLE_SUIT));
-		window.draw(*suit);
+		SuitComponent* suit = dynamic_cast<SuitComponent*>(entity->getComponent(EntityComponent::SUIT));
+
+		window.draw(*suit, sf::RenderStates(entity->getTransform()));
 		break;
 	}
 	default:

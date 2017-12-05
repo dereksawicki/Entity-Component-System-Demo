@@ -4,10 +4,11 @@
 #include "EntityComponent.h"
 
 #include <SFML/System/Time.hpp>
+#include <SFML/Graphics/Transformable.hpp>
 
 #include <unordered_map>
 
-class Entity
+class Entity : public sf::Transformable
 {
 	friend class EntityFactory;
 

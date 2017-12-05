@@ -10,11 +10,12 @@ class EntityComponent
 public:
 	enum COMPONENT_TYPE {
 		NONE
-	  , CIRCLE_SUIT
+      , SUIT
+	  , COLOR
 	};
 
 public:
-	virtual void update(sf::Time delta) {}
+	virtual void update(sf::Time delta) = 0;
 	COMPONENT_TYPE getComponentId() { return mComponentType;  }
 
 protected:

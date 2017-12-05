@@ -4,11 +4,16 @@ Goal of this project:
 
 
 TODO:
--create actor class
--create actor factory
+-[x]create actor class
+-[x]create actor factory
+-[x]create drawable interface
+-[x]create renderer
+-[x]render player
+
 -create controllable interface
 -create player controls implementation of that interface
--create drawable interface
+-control player
+
 *actor should have a component for user input, for its sprite, and the user should be able to fly a ship around.
 
 -------
