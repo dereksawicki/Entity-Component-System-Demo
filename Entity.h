@@ -26,10 +26,10 @@ public:
 	~Entity();
 
 
-	virtual void update(sf::Time deltaTime) {}
+	virtual void update(sf::Time deltaTime);
 
 	void attachComponent(EntityComponent* entityComponent);
-	void detachComponent();
+	void detachComponent(EntityComponent::COMPONENT_TYPE type);
 	EntityComponent* getComponent(EntityComponent::COMPONENT_TYPE type);
 
 private:

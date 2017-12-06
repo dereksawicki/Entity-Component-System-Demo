@@ -16,9 +16,12 @@ Entity::~Entity()
 	}
 }
 
-void update(sf::Time deltaTime)
+void Entity::update(sf::Time deltaTime)
 {
-	// do nothing by default
+	for (auto component : mComponents)
+	{
+		component.second->update(deltaTime);
+	}
 }
 
 void Entity::attachComponent(EntityComponent* entityComponent)
@@ -35,7 +38,12 @@ EntityComponent* Entity::getComponent(EntityComponent::COMPONENT_TYPE type)
 	return found->second;
 }
 
-void Entity::detachComponent()
+void Entity::detachComponent(EntityComponent::COMPONENT_TYPE type)
 {
+	auto found = mComponents.find(type);
 
+	assert(found != mComponents.end());
+
+	delete found->second;
+	mComponents.erase(found);
 }

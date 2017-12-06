@@ -8,6 +8,9 @@ class PlayerController : public InputController
 {
 public:
 
+
+
+
 private:
 	Entity* mEntity;
 };

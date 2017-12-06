@@ -1,6 +1,6 @@
 #include "EntityFactory.h"
 #include "CircleSuit.h"
-#include "SuitComponent.h"
+#include "SuitFactory.h"
 
 Entity* EntityFactory::getEntity(Entity::ENTITY_TYPE type)
 {
@@ -10,7 +10,7 @@ Entity* EntityFactory::getEntity(Entity::ENTITY_TYPE type)
 	{
 		Entity* newEntity = new Entity(Entity::ENTITY_TYPE::Player);
 		// add things a player has
-		SuitComponent* newSuit = new CircleSuit();
+		SuitComponent* newSuit = SuitFactory::getSuit(SuitComponent::SUIT_TYPE::Circle);
 
 		newEntity->setPosition(200.f, 200.f);
 		newEntity->attachComponent(newSuit);

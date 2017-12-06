@@ -10,15 +10,20 @@ TODO:
 -[x]create renderer
 -[x]render player
 
+{
 -create controllable interface
 -create player controls implementation of that interface
 -control player
+} Going with super simple input handling for now.
 
 *actor should have a component for user input, for its sprite, and the user should be able to fly a ship around.
 
 -------
 
--
+-Need a collision system
+-will probably need event queue
+
+
 *actor should be able to run into different colorred items, taking on the color of the item it runs into
 
 

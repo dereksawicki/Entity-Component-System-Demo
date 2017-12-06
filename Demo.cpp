@@ -1,5 +1,7 @@
 #include "Demo.h"
 #include "EntityFactory.h"
+#include "SuitFactory.h"
+
 
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
@@ -39,15 +41,32 @@ void Demo::run()
 				case sf::Event::Closed:
 					mWindow.close();
 					break;
+				case sf::Event::KeyPressed:
+					if (event.key.code == sf::Keyboard::Space) 
+					{
+						SuitFactory::exchangeSuit(player);
+					}
 				default:
 					break;
 				}
 
 				// handle events
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::T)) {
-				}
+
 			}
 
+			float speed = 40.f * TIME_PER_FRAME.asSeconds();
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+				player->move(0.f, -speed);
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+				player->move(-speed, 0.f);
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+				player->move(0.f, speed);
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+				player->move(speed, 0.f);
+			}
 
 		}
 
