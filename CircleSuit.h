@@ -1,18 +1,16 @@
 #ifndef CIRCLE_SUIT_H
 #define CIRCLE_SUIT_H
 
-#include "SuitComponent.h"
+#include "ShapeComponent.h"
 #include <SFML/Graphics/CircleShape.hpp>
 
-class CircleSuit : public SuitComponent
+class CircleSuit : public ShapeComponent
 {
 public:
 	CircleSuit();
 
 	virtual void update(sf::Time dt);
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-private:
 };
 
 #endif

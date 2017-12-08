@@ -11,7 +11,8 @@ public:
 	enum COMPONENT_TYPE {
 		NONE
       , SUIT
-	  , COLOR
+	  , SPRITE
+	  , COLLISION
 	};
 
 public:

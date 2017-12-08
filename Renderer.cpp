@@ -1,18 +1,25 @@
-#include "Renderer.h"
-#include "SuitComponent.h"
+#include "RenderSystem.h"
+#include "ShapeComponent.h"
+#include "SpriteComponent.h"
 
 
-void Renderer::render(sf::RenderWindow& window, Entity* entity)
+void RenderSystem::render(sf::RenderWindow& window, Entity* entity)
 {
 	switch (entity->getEntityType())
 	{
 	case Entity::ENTITY_TYPE::Player:
 	{
 		// draw its renderable components
-		SuitComponent* suit = dynamic_cast<SuitComponent*>(entity->getComponent(EntityComponent::SUIT));
+		ShapeComponent* suit = dynamic_cast<ShapeComponent*>(entity->getComponent(EntityComponent::SUIT));
 
 		window.draw(*suit, sf::RenderStates(entity->getTransform()));
 		break;
+	}
+	case Entity::ENTITY_TYPE::ToggleSuitPickup:
+	{
+		SpriteComponent* sprite = dynamic_cast<SpriteComponent*>(entity->getComponent(EntityComponent::COMPONENT_TYPE::SPRITE));
+	
+		window.draw(*sprite, sf::RenderStates(entity->getTransform()));
 	}
 	default:
 		break;

@@ -7,14 +7,9 @@ SquareSuit::SquareSuit()
 
 	mShape->setFillColor(sf::Color::Red);
 	mComponentType = COMPONENT_TYPE::SUIT;
-	mSuitType = SuitComponent::SUIT_TYPE::Square;
+	mSuitType = ShapeComponent::SHAPE_TYPE::Square;
 }
 
 void SquareSuit::update(sf::Time dt)
 {
-}
-
-void SquareSuit::draw(sf::RenderTarget &target, sf::RenderStates states) const
-{
-	SuitComponent::draw(target, states);
 }

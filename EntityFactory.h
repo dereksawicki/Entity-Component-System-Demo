@@ -2,14 +2,14 @@
 #define ENTITY_FACTORY_H
 
 #include "Entity.h"
+#include "CollisionSystem.h"
+
+#include <SFML/Graphics/Texture.hpp>
 
 class EntityFactory {
 
 public:
-
-
-public:
-	static Entity* getEntity(Entity::ENTITY_TYPE type);
+	static Entity* getEntity(Entity::ENTITY_TYPE type, CollisionSystem& collisionSystem, const sf::Texture& texture);
 
 };
 

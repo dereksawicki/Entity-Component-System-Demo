@@ -1,6 +1,5 @@
 #include "Demo.h"
 #include "EntityFactory.h"
-#include "SuitFactory.h"
 
 
 #include <SFML/Window/Event.hpp>
@@ -11,7 +10,10 @@ Demo::Demo()
 : //EventQueue()
  mWindow(sf::VideoMode(800, 600), "Demo", sf::Style::Close)
 {
-	player = EntityFactory::getEntity(Entity::ENTITY_TYPE::Player);
+	mSpriteSheet.loadFromFile("Media/spritesheet.png");
+
+	mPlayer = EntityFactory::getEntity(Entity::ENTITY_TYPE::Player, mCollisionSystem, mSpriteSheet);
+	mToggleSuitPickup = EntityFactory::getEntity(Entity::ENTITY_TYPE::ToggleSuitPickup, mCollisionSystem, mSpriteSheet);
 
 }
 
@@ -44,7 +46,7 @@ void Demo::run()
 				case sf::Event::KeyPressed:
 					if (event.key.code == sf::Keyboard::Space) 
 					{
-						SuitFactory::exchangeSuit(player);
+						
 					}
 				default:
 					break;
@@ -56,17 +58,22 @@ void Demo::run()
 
 			float speed = 40.f * TIME_PER_FRAME.asSeconds();
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-				player->move(0.f, -speed);
+				mPlayer->move(0.f, -speed);
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-				player->move(-speed, 0.f);
+				mPlayer->move(-speed, 0.f);
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-				player->move(0.f, speed);
+				mPlayer->move(0.f, speed);
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-				player->move(speed, 0.f);
+				mPlayer->move(speed, 0.f);
 			}
+
+
+			mPlayer->update(TIME_PER_FRAME);
+			mToggleSuitPickup->update(TIME_PER_FRAME);
+			mCollisionSystem.update();
 
 		}
 
@@ -79,7 +86,8 @@ void Demo::render()
 {
 	mWindow.clear(sf::Color::Black);
 
-	renderer.render(mWindow, player);
+	mRenderSystem.render(mWindow, mPlayer);
+	mRenderSystem.render(mWindow, mToggleSuitPickup);
 
 	mWindow.display();
 }

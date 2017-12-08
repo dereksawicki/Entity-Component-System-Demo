@@ -8,11 +8,8 @@ class RenderableComponent : public EntityComponent, public sf::Drawable
 
 {
 public:
-	virtual void update(sf::Time) {}
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) {}
-
-private:
-
+	virtual void update(sf::Time) = 0;
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
 };
 
 #endif

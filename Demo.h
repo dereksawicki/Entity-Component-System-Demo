@@ -3,9 +3,11 @@
 
 //#include "Audio.h"
 //#include "EventQueue.h"
-#include "Renderer.h"
+#include "RenderSystem.h"
+#include "CollisionSystem.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Texture.hpp>
 
 class Demo
 {
@@ -19,12 +21,16 @@ private:
 	void render();
 
 private:
-	Entity* player;
-	Renderer renderer;
+	Entity* mPlayer;
+	Entity* mToggleSuitPickup;
+
+	RenderSystem mRenderSystem;
+	CollisionSystem mCollisionSystem;
 	//EventQueue mEventQueue;
 	//Audio mAudio;
 
 	sf::RenderWindow mWindow;
+	sf::Texture mSpriteSheet;
 };
 
 

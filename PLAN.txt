@@ -23,6 +23,10 @@ TODO:
 -Need a collision system
 -will probably need event queue
 
+-[x] collision system
+-[x] pick ups appear, collisions registering.
+-on colliding with pickup, apply its effects to the player, and destroy it.
+
 
 *actor should be able to run into different colorred items, taking on the color of the item it runs into
 
