@@ -5,16 +5,17 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
 
+#include <vector>
 
 Demo::Demo()
-: //EventQueue()
- mWindow(sf::VideoMode(800, 600), "Demo", sf::Style::Close)
+	: //EventQueue()
+	mWindow(sf::VideoMode(800, 600), "Demo", sf::Style::Close)
 {
 	mSpriteSheet.loadFromFile("Media/spritesheet.png");
 
-	mPlayer = EntityFactory::getEntity(Entity::ENTITY_TYPE::Player, mCollisionSystem, mSpriteSheet);
-	mToggleSuitPickup = EntityFactory::getEntity(Entity::ENTITY_TYPE::ToggleSuitPickup, mCollisionSystem, mSpriteSheet);
+	mPickupSystem.init(mCollisionSystem, mSpriteSheet);
 
+	mPlayer = EntityFactory::getEntity(Entity::ENTITY_TYPE::Player, mSpriteSheet);
 }
 
 void Demo::run()
@@ -72,8 +73,16 @@ void Demo::run()
 
 
 			mPlayer->update(TIME_PER_FRAME);
-			mToggleSuitPickup->update(TIME_PER_FRAME);
-			mCollisionSystem.update();
+	
+			mPickupSystem.update(TIME_PER_FRAME);
+
+			// problem: when pickup is deleted, its collider is still in list of colliders
+			// cant be pickup systems responsibility
+			std::vector<Entity*> colliders;
+			auto pickups = mPickupSystem.getPickups();
+			colliders.push_back(mPlayer);
+			colliders.insert(colliders.end(), pickups.begin(), pickups.end());
+			mCollisionSystem.checkCollisions(colliders);
 
 		}
 
@@ -87,7 +96,7 @@ void Demo::render()
 	mWindow.clear(sf::Color::Black);
 
 	mRenderSystem.render(mWindow, mPlayer);
-	mRenderSystem.render(mWindow, mToggleSuitPickup);
+	mPickupSystem.render(mWindow, mRenderSystem);
 
 	mWindow.display();
 }

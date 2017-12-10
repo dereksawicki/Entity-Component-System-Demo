@@ -2,23 +2,26 @@
 #define COLLISION_SYSTEM_H
 
 #include "CollisionComponent.h"
+#include "Subject.h"
 
 #include <SFML/System/Time.hpp>
 
+#include <set>
 #include <vector>
 /*
 
 */
-class CollisionSystem
+class CollisionSystem : public Subject
 {
 public:
-	void update();
+	enum COLLISION_TYPE {
+		None
+	  , ENTITY_PICKUP
+	};
 
-	void addCollider(CollisionComponent* comp);
-	void removeCollider(CollisionComponent* comp);
+public:
+	void checkCollisions(const std::vector<Entity*>& colliders);
 
-private:
-	std::vector<CollisionComponent*> mColliders;
 };
 
 #endif

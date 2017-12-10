@@ -15,10 +15,11 @@ public:
 	virtual void update(sf::Time deltaTime);
 
 	const sf::RectangleShape& getColRect() { return mCollisionRect; }
+	Entity* getEntity() { return mEntity;  }
 
 private:
 	sf::RectangleShape mCollisionRect;
-	Entity* mParentEntity;
+	Entity* mEntity;
 };
 
 #endif

@@ -16,7 +16,7 @@ public:
 	enum ENTITY_TYPE {
 		None
 	  , Player
-	  , ToggleSuitPickup
+	  , Pickup
 	};
 
 	typedef std::unordered_map<EntityComponent::COMPONENT_TYPE, EntityComponent*> EntityComponents;

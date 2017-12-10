@@ -4,6 +4,7 @@ SpriteComponent::SpriteComponent(const sf::Texture& texture, const sf::IntRect& 
 : mSprite(texture, textureRect)
 {
 	mComponentType = EntityComponent::COMPONENT_TYPE::SPRITE;
+	mSprite.setOrigin(textureRect.width / 2, textureRect.height / 2);
 }
 
 void SpriteComponent::update(sf::Time)

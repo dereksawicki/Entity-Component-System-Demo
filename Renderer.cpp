@@ -15,7 +15,7 @@ void RenderSystem::render(sf::RenderWindow& window, Entity* entity)
 		window.draw(*suit, sf::RenderStates(entity->getTransform()));
 		break;
 	}
-	case Entity::ENTITY_TYPE::ToggleSuitPickup:
+	case Entity::ENTITY_TYPE::Pickup:
 	{
 		SpriteComponent* sprite = dynamic_cast<SpriteComponent*>(entity->getComponent(EntityComponent::COMPONENT_TYPE::SPRITE));
 	

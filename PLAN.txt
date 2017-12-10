@@ -20,12 +20,18 @@ TODO:
 
 -------
 
--Need a collision system
--will probably need event queue
+-OnInit function becoming more and more desirable...
 
 -[x] collision system
 -[x] pick ups appear, collisions registering.
--on colliding with pickup, apply its effects to the player, and destroy it.
+-[x]on colliding with pickup, apply its effects to the player, and destroy it.
+
+NEXT:
+-Collision system should send event to event queue, which dispatches to pickup system.
+-pickup system is responsible for managing pickups. It creates them, handles pickup related events, destroys them.
+-Audio system, play sound when grabbing a pickup
+
+-should move things into an entity manager at some point
 
 
 *actor should be able to run into different colorred items, taking on the color of the item it runs into

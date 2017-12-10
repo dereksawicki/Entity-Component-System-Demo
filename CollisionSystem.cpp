@@ -1,43 +1,48 @@
 #include "CollisionSystem.h"
+#include "CollisionEvent.h"
 
 #include <iostream>
 #include <cassert>
 
-void CollisionSystem::update()
+void CollisionSystem::checkCollisions(const std::vector<Entity*>& colliders)
 {
-	for (auto it = mColliders.begin(); it != mColliders.end(); it++) 
+	// Identify Collisions
+	std::set<std::pair<Entity*, Entity*>> collisions;
+	for (auto it = colliders.begin(); it != colliders.end(); it++) 
 	{
-		for (auto jt = mColliders.begin(); jt != mColliders.end(); jt++) 
+		for (auto jt = colliders.begin(); jt != colliders.end(); jt++) 
 		{
-			if (it != jt) {
-
-				if ((*it)->getColRect().getGlobalBounds().intersects((*jt)->getColRect().getGlobalBounds()))
+			if (it != jt) 
+			{
+				if (dynamic_cast<CollisionComponent*>((*it)->getComponent(EntityComponent::COMPONENT_TYPE::COLLISION))->getColRect().getGlobalBounds().intersects(
+					dynamic_cast<CollisionComponent*>((*jt)->getComponent(EntityComponent::COMPONENT_TYPE::COLLISION))->getColRect().getGlobalBounds()))
 				{
-					// emit collision event
-					std::cout << "Colision!" << std::endl;
+					// minmax used so duplicates aren't inserted (ab same as ba)
+					collisions.insert(std::minmax(*it, *jt));
 				}
-
 			}
 		}
 	}
-}
 
-void CollisionSystem::addCollider(CollisionComponent* comp)
-{
-	mColliders.push_back(comp);
-}
-
-void CollisionSystem::removeCollider(CollisionComponent* comp)
-{
-	for (auto itr = mColliders.begin(); itr != mColliders.end(); itr++)
+	// Dispatch collision events to appropriate observer list(s)
+	for (auto col : collisions)
 	{
-		if (*itr == comp)
+		// emit collision event
+		std::cout << "Colision!" << std::endl;
+
+		/* ENTITY_PICKUP Collision */
+		if (col.first->getEntityType()  == Entity::ENTITY_TYPE::Pickup
+		 || col.second->getEntityType() == Entity::ENTITY_TYPE::Pickup)
 		{
-			mColliders.erase(itr);
-			return;
+			// update observers registered to listen for pickup event
+			CollisionEvent* colEvent = new CollisionEvent(col.first, col.second);
+			notify(col.first, colEvent, CollisionSystem::COLLISION_TYPE::ENTITY_PICKUP);
+			delete colEvent;
 		}
+
+		/* ENTIY_WALL Collision */
 	}
 
-	// shouldn't be trying to delete non existent colliders
-	assert(true);
+
+
 }

@@ -13,11 +13,12 @@ public:
       , SUIT
 	  , SPRITE
 	  , COLLISION
+	  , PICKUP
 	};
 
 public:
 	virtual void update(sf::Time delta) = 0;
-	COMPONENT_TYPE getComponentId() { return mComponentType;  }
+	COMPONENT_TYPE getComponentType() { return mComponentType;  }
 
 protected:
 	COMPONENT_TYPE mComponentType;

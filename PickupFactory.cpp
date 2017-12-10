@@ -1,19 +1,32 @@
 #include "PickupFactory.h"
 #include "ToggleSuitPickup.h"
+#include "CollisionComponent.h"
+#include "PickupSprite.h"
 
-PickupComponent* PickupFactory::getPickup(PickupFactory::PICKUP_TYPE type)
+
+Entity* PickupFactory::getPickup(PickupComponent::PICKUP_TYPE type, const sf::Texture& texture)
 {
-
-
 	switch (type)
 	{
-	case PickupFactory::PICKUP_TYPE::ToggleSuit:
+	case PickupComponent::PICKUP_TYPE::ToggleSuit:
 	{
+		Entity* entity = new Entity(Entity::ENTITY_TYPE::Pickup);
+
+		// these have a transform, a sprite, a collider, and a pickup
+		CollisionComponent* collisionComponent = new CollisionComponent(35.f, 35.f, entity);
+		RenderableComponent* spriteComponent = new PickupSprite(texture, sf::IntRect(0, 0, 63, 63));
 		PickupComponent* toggleSuitPickup = new ToggleSuitPickup();
-		return toggleSuitPickup;
+
+		entity->attachComponent(collisionComponent);
+		entity->attachComponent(spriteComponent);
+		entity->attachComponent(toggleSuitPickup);
+
+		return entity;
 
 		break;
 	}
+	default:
+		break;
 	}
 
 }

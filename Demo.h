@@ -5,6 +5,7 @@
 //#include "EventQueue.h"
 #include "RenderSystem.h"
 #include "CollisionSystem.h"
+#include "PickupSystem.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Texture.hpp>
@@ -22,10 +23,11 @@ private:
 
 private:
 	Entity* mPlayer;
-	Entity* mToggleSuitPickup;
 
 	RenderSystem mRenderSystem;
 	CollisionSystem mCollisionSystem;
+	PickupSystem mPickupSystem;
+
 	//EventQueue mEventQueue;
 	//Audio mAudio;
 

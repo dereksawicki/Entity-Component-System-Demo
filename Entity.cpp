@@ -26,7 +26,7 @@ void Entity::update(sf::Time deltaTime)
 
 void Entity::attachComponent(EntityComponent* entityComponent)
 {
-	mComponents[entityComponent->getComponentId()] = entityComponent;
+	mComponents[entityComponent->getComponentType()] = entityComponent;
 }
 
 EntityComponent* Entity::getComponent(EntityComponent::COMPONENT_TYPE type)

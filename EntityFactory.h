@@ -9,7 +9,7 @@
 class EntityFactory {
 
 public:
-	static Entity* getEntity(Entity::ENTITY_TYPE type, CollisionSystem& collisionSystem, const sf::Texture& texture);
+	static Entity* getEntity(Entity::ENTITY_TYPE type,  const sf::Texture& texture);
 
 };
 
