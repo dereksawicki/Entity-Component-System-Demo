@@ -10,6 +10,7 @@ public:
 	enum PICKUP_TYPE {
 		None
 	  , ToggleSuit
+	  , ToggleColor
 	};
 
 public:

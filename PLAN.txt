@@ -28,8 +28,15 @@ TODO:
 
 NEXT:
 -Collision system should send event to event queue, which dispatches to pickup system.
--pickup system is responsible for managing pickups. It creates them, handles pickup related events, destroys them.
+[x]pickup system is responsible for managing pickups. It creates them, handles pickup related events, destroys them.
+
+
+
+->Add another pickup - change color
+
 -Audio system, play sound when grabbing a pickup
+-event queue may not actually really be needed here...
+-so this is really just an Entity-Component-System demo.
 
 -should move things into an entity manager at some point
 

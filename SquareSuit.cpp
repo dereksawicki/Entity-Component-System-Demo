@@ -1,11 +1,13 @@
 #include "SquareSuit.h"
 
 
-SquareSuit::SquareSuit()
+SquareSuit::SquareSuit(const sf::Color& color)
 {
 	mShape = new sf::RectangleShape(sf::Vector2f(35.f, 35.f));
 
-	mShape->setFillColor(sf::Color::Red);
+	mShape->setFillColor(color);
+	mColor = color;
+
 	mComponentType = COMPONENT_TYPE::SUIT;
 	mSuitType = ShapeComponent::SHAPE_TYPE::Square;
 }

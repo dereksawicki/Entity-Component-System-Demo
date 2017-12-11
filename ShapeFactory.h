@@ -15,28 +15,45 @@ public:
 		switch (type) {
 		case ShapeComponent::SHAPE_TYPE::Circle:
 		{
-			return new CircleSuit();
+			return new CircleSuit(sf::Color::Blue);
 		}
 		case ShapeComponent::SHAPE_TYPE::Square:
 		{
-			return new SquareSuit();
+			return new SquareSuit(sf::Color::Blue);
 		}
 		default:
-			return new CircleSuit();
+			return new CircleSuit(sf::Color::Blue);
 		}
 	}
 
 
 	static void exchangeSuit(Entity* entity)
 	{
-		ShapeComponent::SHAPE_TYPE type = dynamic_cast<ShapeComponent*>(entity->getComponent(EntityComponent::COMPONENT_TYPE::SUIT))->getType();
+		ShapeComponent* shapeComponent = dynamic_cast<ShapeComponent*>(entity->getComponent(EntityComponent::COMPONENT_TYPE::SUIT));
+		ShapeComponent::SHAPE_TYPE type = shapeComponent->getType();
+		sf::Color oldColor = shapeComponent->getColor();
+		
 		entity->detachComponent(EntityComponent::COMPONENT_TYPE::SUIT);
 		if (type == ShapeComponent::SHAPE_TYPE::Circle)
 		{
-			entity->attachComponent(new SquareSuit());
+			entity->attachComponent(new SquareSuit(oldColor));
 		}
-		else {
-			entity->attachComponent(new CircleSuit());
+		else 
+		{
+			entity->attachComponent(new CircleSuit(oldColor));
+		}
+	}
+
+	static void exchangeColor(Entity* entity)
+	{
+		sf::Color color = dynamic_cast<ShapeComponent*>(entity->getComponent(EntityComponent::COMPONENT_TYPE::SUIT))->getColor();
+		if (color == sf::Color::Blue) 
+		{
+			dynamic_cast<ShapeComponent*>(entity->getComponent(EntityComponent::COMPONENT_TYPE::SUIT))->setColor(sf::Color::Red);
+		}
+		else
+		{
+			dynamic_cast<ShapeComponent*>(entity->getComponent(EntityComponent::COMPONENT_TYPE::SUIT))->setColor(sf::Color::Blue);
 		}
 	}
 

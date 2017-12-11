@@ -1,11 +1,13 @@
 #include "CircleSuit.h"
 
 
-CircleSuit::CircleSuit()
+CircleSuit::CircleSuit(const sf::Color& color)
 {
 	mShape = new sf::CircleShape(20.f);
 
-	mShape->setFillColor(sf::Color::Blue);
+	mShape->setFillColor(color);
+	mColor = color;
+
 	mComponentType = COMPONENT_TYPE::SUIT;
 	mSuitType = ShapeComponent::SHAPE_TYPE::Circle;
 }

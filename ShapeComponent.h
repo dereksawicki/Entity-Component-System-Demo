@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics/Shape.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/Color.hpp>
 
 /*
 the player will be able to switch between a circle suit and a rectangle suit.
@@ -17,11 +18,6 @@ public:
 	enum SHAPE_TYPE {
 		None, Circle, Square
 	};
-
-
-protected:
-	sf::Shape* mShape;
-	SHAPE_TYPE mSuitType;
 
 public:
 	virtual ~ShapeComponent() { delete mShape; }
@@ -35,6 +31,14 @@ public:
 	SHAPE_TYPE getType() {
 		return mSuitType;
 	}
+
+	const sf::Color& getColor() { return mColor; }
+	void setColor(const sf::Color& col) { mShape->setFillColor(col); mColor = col; }
+
+protected:
+	sf::Shape* mShape;
+	SHAPE_TYPE mSuitType;
+    sf::Color mColor;
 
 };
 

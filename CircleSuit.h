@@ -7,7 +7,7 @@
 class CircleSuit : public ShapeComponent
 {
 public:
-	CircleSuit();
+	CircleSuit(const sf::Color& color);
 
 	virtual void update(sf::Time dt);
 

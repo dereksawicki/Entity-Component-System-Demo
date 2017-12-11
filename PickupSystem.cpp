@@ -25,10 +25,20 @@ void PickupSystem::init(CollisionSystem& collisionSystem, const sf::Texture& tex
 	// create initial pickups
 	Entity* pickup = PickupFactory::getPickup(PickupComponent::PICKUP_TYPE::ToggleSuit, texture);
 	Entity* pickup2 = PickupFactory::getPickup(PickupComponent::PICKUP_TYPE::ToggleSuit, texture);
+	Entity* pickup3 = PickupFactory::getPickup(PickupComponent::PICKUP_TYPE::ToggleColor, texture);
+	Entity* pickup4 = PickupFactory::getPickup(PickupComponent::PICKUP_TYPE::ToggleColor, texture);
+
+
 	pickup->setPosition(100.f, 50.f);
 	pickup2->setPosition(150.f, 100.f);
+	pickup3->setPosition(10.f, 300.f);
+	pickup4->setPosition(200.f, 400.f);
+
+
 	mPickups.push_back(pickup);
 	mPickups.push_back(pickup2);
+	mPickups.push_back(pickup3);
+	mPickups.push_back(pickup4);
 }
 
 void PickupSystem::update(sf::Time deltaTime)

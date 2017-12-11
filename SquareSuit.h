@@ -7,7 +7,7 @@
 class SquareSuit : public ShapeComponent
 {
 public:
-	SquareSuit();
+	SquareSuit(const sf::Color& color);
 
 	virtual void update(sf::Time dt);
 };
