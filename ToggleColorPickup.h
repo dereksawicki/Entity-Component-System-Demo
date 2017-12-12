@@ -9,7 +9,7 @@ class ToggleColorPickup : public PickupComponent
 public:
 	ToggleColorPickup()
 	{
-		mComponentType = EntityComponent::COMPONENT_TYPE::PICKUP;
+		mComponentType = EntityComponent::COMPONENT_TYPE::Pickup;
 		mPickupType = PickupComponent::PICKUP_TYPE::ToggleColor;
 	}
 

@@ -3,13 +3,14 @@
 
 #include "Entity.h"
 #include "CollisionSystem.h"
+#include "InputManager.h"
 
 #include <SFML/Graphics/Texture.hpp>
 
 class EntityFactory {
 
 public:
-	static Entity* getEntity(Entity::ENTITY_TYPE type,  const sf::Texture& texture);
+	static Entity* getEntity(Entity::ENTITY_TYPE type, const sf::Texture& texture);
 
 };
 

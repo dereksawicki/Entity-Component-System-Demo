@@ -9,7 +9,7 @@ class ToggleSuitPickup : public PickupComponent
 public:
 	ToggleSuitPickup() 
 	{
-		mComponentType = EntityComponent::COMPONENT_TYPE::PICKUP;
+		mComponentType = EntityComponent::COMPONENT_TYPE::Pickup;
 		mPickupType = PickupComponent::PICKUP_TYPE::ToggleSuit;
 	}
 

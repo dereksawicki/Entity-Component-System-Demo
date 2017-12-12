@@ -14,8 +14,8 @@ void CollisionSystem::checkCollisions(const std::vector<Entity*>& colliders)
 		{
 			if (it != jt) 
 			{
-				if (dynamic_cast<CollisionComponent*>((*it)->getComponent(EntityComponent::COMPONENT_TYPE::COLLISION))->getColRect().getGlobalBounds().intersects(
-					dynamic_cast<CollisionComponent*>((*jt)->getComponent(EntityComponent::COMPONENT_TYPE::COLLISION))->getColRect().getGlobalBounds()))
+				if (dynamic_cast<CollisionComponent*>((*it)->getComponent(EntityComponent::COMPONENT_TYPE::Collision))->getColRect().getGlobalBounds().intersects(
+					dynamic_cast<CollisionComponent*>((*jt)->getComponent(EntityComponent::COMPONENT_TYPE::Collision))->getColRect().getGlobalBounds()))
 				{
 					// minmax used so duplicates aren't inserted (ab same as ba)
 					collisions.insert(std::minmax(*it, *jt));
@@ -36,7 +36,7 @@ void CollisionSystem::checkCollisions(const std::vector<Entity*>& colliders)
 		{
 			// update observers registered to listen for pickup event
 			CollisionEvent* colEvent = new CollisionEvent(col.first, col.second);
-			notify(col.first, colEvent, CollisionSystem::COLLISION_TYPE::ENTITY_PICKUP);
+			notify(colEvent, CollisionSystem::COLLISION_TYPE::ENTITY_PICKUP);
 			delete colEvent;
 		}
 

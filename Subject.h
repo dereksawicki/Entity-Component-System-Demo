@@ -10,11 +10,11 @@
 class Subject
 {
 public:
-	void addObserver(unsigned int category, Observer* observer)
+	void addObserver(Observer* observer, unsigned int category)
 	{
 		mObservers[category].push_back(observer);
 	}
-	void removeObserver(unsigned int category, Observer* observer)
+	void removeObserver(Observer* observer, unsigned int category)
 	{
 		auto find = std::find(mObservers[category].begin(), mObservers[category].end(), observer);
 		assert(find != mObservers[category].end());
@@ -22,11 +22,11 @@ public:
 		mObservers[category].erase(find);
 	}
 
-	void notify(Entity* entity, Event* event, unsigned int category)
+	void notify(Event* event, unsigned int category)
 	{
 		for (auto observer : mObservers[category])
 		{
-			observer->onNotify(entity, event);
+			observer->onNotify(event);
 		}
 	}
 

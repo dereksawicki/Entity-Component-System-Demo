@@ -44,7 +44,7 @@ Entity* PickupFactory::getPickup(PickupComponent::PICKUP_TYPE type, const sf::Te
 		break;
 	}
 	default:
-		break;
+		return NULL;
 	}
 
 }

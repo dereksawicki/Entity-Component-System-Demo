@@ -10,14 +10,14 @@ void RenderSystem::render(sf::RenderWindow& window, Entity* entity)
 	case Entity::ENTITY_TYPE::Player:
 	{
 		// draw its renderable components
-		ShapeComponent* suit = dynamic_cast<ShapeComponent*>(entity->getComponent(EntityComponent::SUIT));
+		ShapeComponent* suit = dynamic_cast<ShapeComponent*>(entity->getComponent(EntityComponent::Suit));
 
 		window.draw(*suit, sf::RenderStates(entity->getTransform()));
 		break;
 	}
 	case Entity::ENTITY_TYPE::Pickup:
 	{
-		SpriteComponent* sprite = dynamic_cast<SpriteComponent*>(entity->getComponent(EntityComponent::COMPONENT_TYPE::SPRITE));
+		SpriteComponent* sprite = dynamic_cast<SpriteComponent*>(entity->getComponent(EntityComponent::COMPONENT_TYPE::Sprite));
 	
 		window.draw(*sprite, sf::RenderStates(entity->getTransform()));
 	}

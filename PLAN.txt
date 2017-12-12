@@ -26,15 +26,20 @@ TODO:
 -[x] pick ups appear, collisions registering.
 -[x]on colliding with pickup, apply its effects to the player, and destroy it.
 
-NEXT:
+
 -Collision system should send event to event queue, which dispatches to pickup system.
 [x]pickup system is responsible for managing pickups. It creates them, handles pickup related events, destroys them.
 
+-[x]Add another pickup - change color
+-[x]Audio system, play sound when grabbing a pickup
+
+NEXT:
+-input handling -> jumping between actors...
 
 
-->Add another pickup - change color
+-Need at least 2 different controllers: 1) controls an entity 2) controls the demo and entity manager. Should really be three, but I'm going to make it two.
+-
 
--Audio system, play sound when grabbing a pickup
 -event queue may not actually really be needed here...
 -so this is really just an Entity-Component-System demo.
 

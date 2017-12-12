@@ -6,6 +6,9 @@
 #include "RenderSystem.h"
 #include "CollisionSystem.h"
 #include "PickupSystem.h"
+#include "ActorSystem.h"
+#include "AudioSystem.h"
+#include "InputManager.h"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Texture.hpp>
@@ -22,11 +25,12 @@ private:
 	void render();
 
 private:
-	Entity* mPlayer;
-
 	RenderSystem mRenderSystem;
+	AudioSystem mAudioSystem;
 	CollisionSystem mCollisionSystem;
 	PickupSystem mPickupSystem;
+	ActorSystem mActorSystem;
+	InputManager mInputManager;
 
 	//EventQueue mEventQueue;
 	//Audio mAudio;

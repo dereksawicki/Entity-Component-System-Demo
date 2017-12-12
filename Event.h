@@ -8,8 +8,9 @@ public:
 	virtual ~Event(){}
 
 	enum EVENT_TYPE {
-		None,
-		Collision
+		None
+	  , Collision
+	  , Input
 	};
 
 public:

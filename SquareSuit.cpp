@@ -8,7 +8,7 @@ SquareSuit::SquareSuit(const sf::Color& color)
 	mShape->setFillColor(color);
 	mColor = color;
 
-	mComponentType = COMPONENT_TYPE::SUIT;
+	mComponentType = COMPONENT_TYPE::Suit;
 	mSuitType = ShapeComponent::SHAPE_TYPE::Square;
 }
 

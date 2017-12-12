@@ -14,13 +14,14 @@ Demo::Demo()
 	mSpriteSheet.loadFromFile("Media/spritesheet.png");
 
 	mPickupSystem.init(mCollisionSystem, mSpriteSheet);
+	mAudioSystem.init(mCollisionSystem);
 
-	mPlayer = EntityFactory::getEntity(Entity::ENTITY_TYPE::Player, mSpriteSheet);
+
+	mActorSystem.init(mCollisionSystem, mSpriteSheet, mInputManager);
 }
 
 void Demo::run()
 {
-
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time TIME_PER_FRAME = sf::seconds(1.f / 60.f);
@@ -33,55 +34,17 @@ void Demo::run()
 		{
 			timeSinceLastUpdate -= TIME_PER_FRAME;
 
-			sf::Event event;
-			while (mWindow.pollEvent(event))
-			{
-				switch (event.type)
-				{
-					// if key pressed, emit key pressed event
-					// event queue should receive it, notify
-					// all observers.
-				case sf::Event::Closed:
-					mWindow.close();
-					break;
-				case sf::Event::KeyPressed:
-					if (event.key.code == sf::Keyboard::Space) 
-					{
-						
-					}
-				default:
-					break;
-				}
+			mInputManager.pollEvents(mWindow);
 
-				// handle events
-
-			}
-
-			float speed = 40.f * TIME_PER_FRAME.asSeconds();
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-				mPlayer->move(0.f, -speed);
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-				mPlayer->move(-speed, 0.f);
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-				mPlayer->move(0.f, speed);
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-				mPlayer->move(speed, 0.f);
-			}
-
-
-			mPlayer->update(TIME_PER_FRAME);
-	
+			mActorSystem.update(TIME_PER_FRAME);
 			mPickupSystem.update(TIME_PER_FRAME);
 
-			// problem: when pickup is deleted, its collider is still in list of colliders
-			// cant be pickup systems responsibility
+			// Check Collisions
 			std::vector<Entity*> colliders;
 			auto pickups = mPickupSystem.getPickups();
-			colliders.push_back(mPlayer);
+			auto actors = mActorSystem.getActors();
 			colliders.insert(colliders.end(), pickups.begin(), pickups.end());
+			colliders.insert(colliders.end(), actors.begin(), actors.end());
 			mCollisionSystem.checkCollisions(colliders);
 
 		}
@@ -95,7 +58,7 @@ void Demo::render()
 {
 	mWindow.clear(sf::Color::Black);
 
-	mRenderSystem.render(mWindow, mPlayer);
+	mActorSystem.render(mWindow, mRenderSystem);
 	mPickupSystem.render(mWindow, mRenderSystem);
 
 	mWindow.display();

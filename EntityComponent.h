@@ -9,11 +9,12 @@ class EntityComponent
 
 public:
 	enum COMPONENT_TYPE {
-		NONE
-      , SUIT
-	  , SPRITE
-	  , COLLISION
-	  , PICKUP
+		None
+      , Suit
+	  , Sprite
+	  , Collision
+	  , Pickup
+	  , Input
 	};
 
 public:

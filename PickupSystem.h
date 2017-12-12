@@ -22,7 +22,7 @@ public:
 	void render(sf::RenderWindow& window, const RenderSystem& renderSystem);
 
 
-	virtual void onNotify(Entity* entity, Event* event);
+	virtual void onNotify(Event* event);
 	const std::vector<Entity*>& getPickups();
 
 private:

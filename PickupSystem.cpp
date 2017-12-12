@@ -20,7 +20,7 @@ PickupSystem::~PickupSystem()
 void PickupSystem::init(CollisionSystem& collisionSystem, const sf::Texture& texture)
 {
 	// listen for pickup collisions
-	collisionSystem.addObserver(CollisionSystem::COLLISION_TYPE::ENTITY_PICKUP, this);
+	collisionSystem.addObserver(this, CollisionSystem::COLLISION_TYPE::ENTITY_PICKUP);
 
 	// create initial pickups
 	Entity* pickup = PickupFactory::getPickup(PickupComponent::PICKUP_TYPE::ToggleSuit, texture);
@@ -72,9 +72,8 @@ void PickupSystem::destroyPickup(Entity* entity)
 }
 
 
-void PickupSystem::onNotify(Entity* entity, Event* event)
+void PickupSystem::onNotify(Event* event)
 {
-	std::cout << "Pickup collision!" << std::endl;
 	switch (event->getEventType())
 	{
 	case Event::EVENT_TYPE::Collision:
@@ -83,13 +82,13 @@ void PickupSystem::onNotify(Entity* entity, Event* event)
 		if (collisionEvent->mEntities[0]->getEntityType() == Entity::ENTITY_TYPE::Pickup)
 		{
 			dynamic_cast<PickupComponent*>(
-				collisionEvent->mEntities[0]->getComponent(EntityComponent::COMPONENT_TYPE::PICKUP))->applyEffect(collisionEvent->mEntities[1]);
+				collisionEvent->mEntities[0]->getComponent(EntityComponent::COMPONENT_TYPE::Pickup))->applyEffect(collisionEvent->mEntities[1]);
 			destroyPickup(collisionEvent->mEntities[0]);
 		}
 		else
 		{
 			dynamic_cast<PickupComponent*>(
-				collisionEvent->mEntities[1]->getComponent(EntityComponent::COMPONENT_TYPE::PICKUP))->applyEffect(collisionEvent->mEntities[0]);
+				collisionEvent->mEntities[1]->getComponent(EntityComponent::COMPONENT_TYPE::Pickup))->applyEffect(collisionEvent->mEntities[0]);
 			destroyPickup(collisionEvent->mEntities[1]);
 		}
 	}
